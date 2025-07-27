@@ -1,29 +1,37 @@
 <!-- -*- mode: markdown; -*- -->
 
-<div align="center" markdown><a name="readme-top"></a>
+<div align="center" markdown>
+<a name="readme-top"></a>
 
-<img height="160" src="https://api.iconify.design/logos/python.svg" />
+<img
+  height="160"
+  src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji/assets/Tangerine/3D/tangerine_3d.png"
+/>
 
 # Tangerine
 
 TODO: DESCRIPTION <br />
 [**Explore the docs »**](https://liblaf.github.io/tangerine/)
 
+<!-- tangerine-start: badges/python.md.jinja -->
+
+[![Codecov](https://img.shields.io/codecov/c/github/liblaf/tangerine?logo=Codecov&label=Coverage)](https://codecov.io/gh/liblaf/tangerine)
+[![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/liblaf/tangerine/test.yaml?logo=GitHub%20Actions&label=Test)](https://github.com/liblaf/tangerine/actions/workflows/test.yaml)
+[![Lines of Code](https://tokei.rs/b1/github.com/liblaf/tangerine?category=code&label=Lines%20of%20Code&style=flat)](https://github.com/liblaf/tangerine)
+<br />
 [![PyPI - Downloads](https://img.shields.io/pypi/dm/liblaf-tangerine?logo=PyPI&label=Downloads)](https://pypi.org/project/liblaf-tangerine)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/liblaf-tangerine?logo=Python&label=Python)](https://pypi.org/project/liblaf-tangerine)
 [![PyPI - Version](https://img.shields.io/pypi/v/liblaf-tangerine?logo=PyPI&label=PyPI)](https://pypi.org/project/liblaf-tangerine)
-[![Codecov](https://img.shields.io/codecov/c/github/liblaf/tangerine?logo=Codecov&label=Coverage)](https://codecov.io/gh/liblaf/tangerine)
-[![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/liblaf/tangerine/test.yaml?logo=GitHub%20Actions&label=Test)](https://github.com/liblaf/tangerine/actions/workflows/test.yaml)
 <br />
 [![GitHub Contributors](https://img.shields.io/github/contributors/liblaf/tangerine?logo=GitHub&label=Contributors)](https://github.com/liblaf/tangerine/graphs/contributors)
-[![GitHub Forks](https://img.shields.io/github/forks/liblaf/tangerine)](https://github.com/liblaf/tangerine/forks)
-[![GitHub Repo Stars](https://img.shields.io/github/stars/liblaf/tangerine)](https://github.com/liblaf/tangerine/stargazers)
 [![GitHub Issues](https://img.shields.io/github/issues/liblaf/tangerine?logo=GitHub&label=Issues)](https://github.com/liblaf/tangerine/issues)
 [![GitHub License](https://img.shields.io/github/license/liblaf/tangerine?label=License)](https://github.com/liblaf/tangerine/blob/main/LICENSE)
+[![GitHub Forks](https://img.shields.io/github/forks/liblaf/tangerine)](https://github.com/liblaf/tangerine/forks)
+[![GitHub Repo Stars](https://img.shields.io/github/stars/liblaf/tangerine)](https://github.com/liblaf/tangerine/stargazers)
 
-[Changelog](https://github.com/liblaf/tangerine/blob/main/CHANGELOG.md) · [Report Bug](https://github.com/liblaf/tangerine/issues) · [Request Feature](https://github.com/liblaf/tangerine/issues)
+<!-- tangerine-end -->
 
-![](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
+![](https://cdn.jsdelivr.net/gh/andreasbm/readme/assets/lines/rainbow.png)
 
 </div>
 
