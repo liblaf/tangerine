@@ -26,7 +26,10 @@ classifiers = [
   "Typing :: Typed",
 ]
 dependencies = [
+  "attrs>=25.0.0,<26",
   "cyclopts>=3.0.0,<4",
+  "cytoolz>=1.0.0,<2",
+  "gitpython>=3.0.0,<4",
   "jinja2>=3.0.0,<4",
   "lazy-loader>=0.4,<0.5",
   "liblaf-grapes>=1.0.0,<2",

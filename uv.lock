@@ -910,7 +910,10 @@ wheels = [
 name = "liblaf-tangerine"
 source = { editable = "." }
 dependencies = [
+    { name = "attrs" },
     { name = "cyclopts" },
+    { name = "cytoolz" },
+    { name = "gitpython" },
     { name = "jinja2" },
     { name = "lazy-loader" },
     { name = "liblaf-grapes" },
@@ -958,7 +961,10 @@ test = [
 
 [package.metadata]
 requires-dist = [
+    { name = "attrs", specifier = ">=25.3.0" },
     { name = "cyclopts", specifier = ">=3.0.0,<4" },
+    { name = "cytoolz", specifier = ">=1.0.1" },
+    { name = "gitpython", specifier = ">=3.0.0,<4" },
     { name = "jinja2", specifier = ">=3.0.0,<4" },
     { name = "lazy-loader", specifier = ">=0.4,<0.5" },
     { name = "liblaf-grapes", specifier = ">=1.0.0,<2" },

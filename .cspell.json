@@ -5,6 +5,7 @@
   "words": [
     "arithmatex",
     "cython",
+    "cytoolz",
     "direnv",
     "dmypy",
     "fieldz",
