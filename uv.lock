@@ -961,9 +961,9 @@ test = [
 
 [package.metadata]
 requires-dist = [
-    { name = "attrs", specifier = ">=25.3.0" },
+    { name = "attrs", specifier = ">=25.0.0,<26" },
     { name = "cyclopts", specifier = ">=3.0.0,<4" },
-    { name = "cytoolz", specifier = ">=1.0.1" },
+    { name = "cytoolz", specifier = ">=1.0.0,<2" },
     { name = "gitpython", specifier = ">=3.0.0,<4" },
     { name = "jinja2", specifier = ">=3.0.0,<4" },
     { name = "lazy-loader", specifier = ">=0.4,<0.5" },

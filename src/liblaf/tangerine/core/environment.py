@@ -15,8 +15,11 @@ type Segment = str | Template
 
 
 def load_copier_answers() -> dict[str, str]:
-    repo = git.Repo(search_parent_directories=True)
-    cwd = Path(repo.working_dir)
+    try:
+        repo = git.Repo(search_parent_directories=True)
+        cwd = Path(repo.working_dir)
+    except git.InvalidGitRepositoryError:
+        cwd = Path()
     answers: dict[str, str] = {}
     for file in itertools.chain(
         cwd.rglob(".copier-answers.*.yaml"),
