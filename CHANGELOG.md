@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.1.1](https://github.com/liblaf/tangerine/compare/v0.1.0...v0.1.1) (2025-07-27)
+
+
+### 🐛 Bug Fixes
+
+* **core:** handle non-git directories in copier answers loader ([2a0745a](https://github.com/liblaf/tangerine/commit/2a0745a9c253adb592d1f1e924dd84d6a23056d4))
+
+
+### 📝 Documentation
+
+* update README with new logo and badge template ([f2dbfbe](https://github.com/liblaf/tangerine/commit/f2dbfbe08a189fb0f512275a6194a604fbd28fad))
+
 ## [0.1.0] - 2025-07-27
 
 ### ✨ Features
