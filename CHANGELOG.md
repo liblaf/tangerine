@@ -1,6 +1,16 @@
 # Changelog
 
-## [0.1.1](https://github.com/liblaf/tangerine/compare/v0.1.0..v0.1.1) - 2025-07-27
+## [0.1.2](https://github.com/liblaf/tangerine/compare/v0.1.1..v0.1.2) - 2025-07-28
+
+### ✨ Features
+
+- enhance template handling and add utils module - ([ec7d2e4](https://github.com/liblaf/tangerine/commit/ec7d2e4a9b3168a62c30586a1ad71545390c4891))
+
+### ❤️ New Contributors
+
+- [@liblaf](https://github.com/liblaf) made their first contribution
+
+## [0.1.1](https://github.com/liblaf/tangerine/compare/v0.1.0..v0.1.1) - 2025-07-28
 
 ### 🐛 Bug Fixes
 
@@ -9,10 +19,6 @@
 ### 📝 Documentation
 
 - update README with new logo and badge template - ([f2dbfbe](https://github.com/liblaf/tangerine/commit/f2dbfbe08a189fb0f512275a6194a604fbd28fad))
-
-### ❤️ New Contributors
-
-- [@liblaf](https://github.com/liblaf) made their first contribution
 
 ## [0.1.0] - 2025-07-27
 
