@@ -5,7 +5,11 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
-CODE="\
+function has() {
+  type "$@" &> /dev/null
+}
+
+TEMPLATE="\
 # tangerine-start: lazy-loader.py.jinja
 import lazy_loader as lazy
 
@@ -14,12 +18,23 @@ __getattr__, __dir__, __all__ = lazy.attach_stub(__name__, __file__)
 "
 
 git_root=$(git rev-parse --show-toplevel)
-find "$git_root/src/" -name '__init__.pyi' -type f -print0 |
-  while IFS= read -d '' -r file; do
-    file="${file%'i'}"
-    if [[ ! -f $file ]]; then
-      echo -n "$CODE" | tangerine > "$file"
-    else
-      tangerine "$file"
-    fi
-  done
+src_dir="$git_root/src"
+if [[ -d $src_dir ]]; then
+  find "$src_dir" -name '__init__.pyi' -type f -print0 |
+    while IFS= read -d '' -r file; do
+      file="${file/%'.pyi'/'.py'}"
+      if has tangerine; then
+        if [[ ! -f $file ]]; then
+          tangerine <<< "$TEMPLATE" > "$file"
+        else
+          tangerine "$file"
+        fi
+      else
+        if [[ ! -f $file ]]; then
+          echo -n "$TEMPLATE" > "$file"
+        else
+          : # skip existing files
+        fi
+      fi
+    done
+fi

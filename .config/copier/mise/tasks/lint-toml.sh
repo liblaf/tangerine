@@ -5,10 +5,22 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
-function sort-toml() {
-  toml-sort --in-place --all "$@"
-  sed --expression='s/# :schema /#:schema /' --in-place "$@"
-  tombi format "$@"
+function has() {
+  type "$@" &> /dev/null
 }
 
-sort-toml .ruff.toml pyproject.toml
+function pretty-toml() {
+  if has toml-sort; then
+    toml-sort --in-place --all "$@"
+    sed --expression='s/# :schema /#:schema /g' --in-place "$@"
+  fi
+  if has tombi; then
+    tombi format "$@"
+  fi
+}
+
+pretty-toml .ruff.toml pyproject.toml
+
+if has tombi; then
+  tombi lint
+fi
