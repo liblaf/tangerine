@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.2](https://github.com/liblaf/tangerine/compare/v0.1.1...v0.1.2) (2025-07-28)
+
+
+### ✨ Features
+
+* enhance template handling and add utils module ([ec7d2e4](https://github.com/liblaf/tangerine/commit/ec7d2e4a9b3168a62c30586a1ad71545390c4891))
+
 ## [0.1.1](https://github.com/liblaf/tangerine/compare/v0.1.0..v0.1.1) - 2025-07-27
 
 ### 🐛 Bug Fixes
