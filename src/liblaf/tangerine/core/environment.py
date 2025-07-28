@@ -5,8 +5,11 @@ import attrs
 import cytoolz as toolz
 import git
 import jinja2
+import platformdirs
+from loguru import logger
 
 from liblaf import grapes
+from liblaf.tangerine import utils
 
 from .constants import TANGERINE_END, TANGERINE_START
 from .template import Template
@@ -33,10 +36,19 @@ def load_copier_answers() -> dict[str, str]:
 
 
 def _default_environment() -> jinja2.Environment:
+    loaders: list[jinja2.BaseLoader] = []
+    dirs: platformdirs.AppDirs = utils.app_dirs()
+    for config_dir in dirs.iter_config_paths():
+        templates_dir: Path = config_dir / "templates"
+        if not templates_dir.exists():
+            continue
+        loaders.append(jinja2.FileSystemLoader(templates_dir))
     return jinja2.Environment(
         undefined=jinja2.StrictUndefined,
         autoescape=jinja2.select_autoescape(),
-        loader=jinja2.PackageLoader("liblaf.tangerine"),
+        loader=jinja2.ChoiceLoader(
+            [*loaders, jinja2.PackageLoader("liblaf.tangerine")]
+        ),
     )
 
 
@@ -76,12 +88,17 @@ class Environment:
         return text
 
     def render_template(self, template: Template, **kwargs: str) -> str:
-        template_jinja: jinja2.Template = self.jinja.get_template(template.name)
+        try:
+            template_jinja: jinja2.Template = self.jinja.get_template(template.name)
+        except jinja2.TemplateNotFound as err:
+            for template_name in err.templates:
+                logger.warning("Template not found: {}", template_name)
+            return "\n".join(template.lines)
         kwargs = toolz.merge(self.context, template.context, kwargs)
         rendered: str = template_jinja.render(kwargs).strip()
         lines: list[str] = rendered.splitlines()
         if "-*-" in lines[0]:
             lines = lines[1:]
         rendered = "\n".join(lines).strip()
-        rendered = template.start_line + "\n" + rendered + "\n" + template.end_line
+        rendered = template.lines[0] + "\n" + rendered + "\n" + template.lines[-1]
         return rendered

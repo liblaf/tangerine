@@ -5,4 +5,10 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
+function sort-toml() {
+  toml-sort --in-place --all "$@"
+  sed --expression='s/# :schema /#:schema /' --in-place "$@"
+  tombi format "$@"
+}
+
 sort-toml .ruff.toml pyproject.toml

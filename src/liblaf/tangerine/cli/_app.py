@@ -1,3 +1,4 @@
+import sys
 from typing import Annotated
 
 import cyclopts
@@ -19,14 +20,17 @@ def _(
 
 @app.default
 def _(
-    file: Annotated[cyclopts.types.ResolvedExistingFile, cyclopts.Argument()],
+    file: Annotated[
+        cyclopts.types.ResolvedExistingFile | None, cyclopts.Argument()
+    ] = None,
     /,
     *,
     in_place: Annotated[bool, cyclopts.Parameter()] = True,
 ) -> None:
     env: core.Environment = core.Environment()
-    segments: list[core.Segment] = env.parse_text(file.read_text())
-    if in_place:
+    text: str = sys.stdin.read() if file is None else file.read_text()
+    segments: list[core.Segment] = env.parse_text(text)
+    if in_place and file is not None:
         file.write_text(env.render(segments))
     else:
         print(env.render(segments), end="")

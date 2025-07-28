@@ -42,6 +42,7 @@
     "pyvista",
     "scrapy",
     "sdist",
+    "tombi",
     "trimesh",
     "unshallow",
     "venv",
