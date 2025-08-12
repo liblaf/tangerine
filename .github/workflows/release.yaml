@@ -25,7 +25,7 @@ jobs:
           target: ${{ matrix.platform.target }}
           args: --bins --release --locked
       - name: Distribute
-        run: mise run dist --name tangerine --target '${{ matrix.platform.target }}'
+        run: python 'scripts/dist.py' --target '${{ matrix.platform.target }}'
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
