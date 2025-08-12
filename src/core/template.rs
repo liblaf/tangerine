@@ -1,10 +1,10 @@
 use super::constants::PATTERN_START;
 use color_eyre::eyre::Result;
 
-#[derive(Clone, Debug)]
+#[derive(Debug)]
 pub struct Template {
     pub name: String,
-    pub context: serde_yml::Value,
+    pub context: minijinja::Value,
     pub lines: Vec<String>,
 }
 
@@ -15,7 +15,7 @@ impl Template {
         let name = captures.name("name").unwrap().as_str();
         let context = match captures.name("context") {
             Some(context) => serde_yml::from_str(context.as_str())?,
-            None => serde_yml::Value::Null,
+            None => minijinja::Value::default(),
         };
         Ok(Self {
             name: name.to_string(),

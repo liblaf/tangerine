@@ -4,30 +4,39 @@ use crate::core::PATTERN_START;
 use color_eyre::eyre::Result;
 use etcetera::AppStrategy;
 
+#[derive(Debug)]
 pub struct Environment<'a> {
+    context: minijinja::Value,
     env: minijinja::Environment<'a>,
 }
 
-#[derive(Clone, Debug)]
+#[derive(Debug)]
 pub enum Segment {
-    Text(String),
     Template(Template),
+    Text(String),
 }
 
 impl<'a> Environment<'a> {
-    pub fn new() -> Self {
+    pub fn get_template(
+        &self,
+        name: &str,
+    ) -> std::result::Result<minijinja::Template<'_, '_>, minijinja::Error> {
+        self.env.get_template(name)
+    }
+
+    pub fn new() -> Result<Self> {
         let mut env = minijinja::Environment::new();
         env.set_undefined_behavior(minijinja::UndefinedBehavior::Strict);
-
         minijinja_embed::load_templates!(env);
         let strategy = etcetera::choose_app_strategy(etcetera::AppStrategyArgs {
-            app_name: "tangerine".into(),
-            author: "liblaf".into(),
-            top_level_domain: "local".into(),
-        })
-        .unwrap();
+            app_name: crate::build::PROJECT_NAME.to_string(),
+            author: super::constants::AUTHOR.to_string(),
+            top_level_domain: String::new(),
+        })?;
         env.set_loader(minijinja::path_loader(strategy.in_data_dir("templates")));
-        Environment { env }
+        let context = crate::utils::load_copier_answers()?;
+        tracing::debug!("Copier Answers: {}", context);
+        Ok(Environment { env, context })
     }
 
     pub fn parse_text(&self, text: String) -> Result<Vec<Segment>> {
@@ -39,9 +48,8 @@ impl<'a> Environment<'a> {
                 template_lines.push(line.to_string());
                 if PATTERN_END.is_match(line) {
                     in_template = false;
-                    let template = Template::from_lines(template_lines.clone())?;
+                    let template = Template::from_lines(std::mem::take(&mut template_lines))?;
                     segments.push(Segment::Template(template));
-                    template_lines.clear();
                     continue;
                 }
             } else if PATTERN_START.is_match(line) {
@@ -50,6 +58,7 @@ impl<'a> Environment<'a> {
                 continue;
             } else {
                 segments.push(Segment::Text(line.to_string()));
+                continue;
             }
         }
         Ok(segments)
@@ -60,21 +69,7 @@ impl<'a> Environment<'a> {
         for segment in segments {
             match segment {
                 Segment::Text(text) => lines.push(text.to_string()),
-                Segment::Template(template) => {
-                    match self
-                        .env
-                        .get_template(&(template.name.to_string() + ".jinja"))
-                    {
-                        Ok(tmpl) => {
-                            let rendered = tmpl.render(&template.context)?;
-                            lines.push(rendered);
-                        }
-                        Err(err) => {
-                            lines.extend(template.lines.clone());
-                            tracing::error!(error = %err, template = %template.name);
-                        }
-                    }
-                }
+                Segment::Template(template) => lines.push(self.render_template(template)?),
             }
         }
         let mut text = lines.join("\n");
@@ -82,5 +77,35 @@ impl<'a> Environment<'a> {
             text.push('\n');
         }
         Ok(text)
+    }
+
+    #[tracing::instrument(skip_all, fields(template = template.name))]
+    pub fn render_template(&self, template: &Template) -> Result<String> {
+        let template_name = if template.name.ends_with(".jinja") {
+            template.name.to_string()
+        } else {
+            template.name.to_string() + ".jinja"
+        };
+        match self.get_template(&template_name) {
+            Ok(tmpl) => {
+                let context =
+                    minijinja::value::merge_maps([self.context.clone(), template.context.clone()]);
+                tracing::debug!(%context);
+                let rendered = tmpl.render(context)?;
+                let rendered = if rendered.trim().lines().next().unwrap().contains("-*-") {
+                    rendered.lines().skip(1).collect::<Vec<_>>().join("\n")
+                } else {
+                    rendered
+                };
+                let first = template.lines.first().unwrap();
+                let last = template.lines.last().unwrap();
+                let result = [first, rendered.trim(), last].join("\n");
+                Ok(result)
+            }
+            Err(err) => {
+                tracing::error!("{}", err);
+                Ok(template.lines.join("\n"))
+            }
+        }
     }
 }
