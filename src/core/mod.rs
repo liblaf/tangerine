@@ -1,5 +1,6 @@
 mod constants;
 mod environment;
+mod loader;
 mod template;
 
 pub use constants::PATTERN_END;

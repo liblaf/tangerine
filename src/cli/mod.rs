@@ -1,7 +1,6 @@
-use eyre::Result;
-use std::path::PathBuf;
-
 use crate::core::Environment;
+use color_eyre::eyre::Result;
+use std::path::PathBuf;
 
 #[derive(clap::Parser)]
 pub struct Cli {

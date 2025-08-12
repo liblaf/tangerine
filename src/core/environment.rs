@@ -2,9 +2,10 @@ use super::template::Template;
 use crate::core::PATTERN_END;
 use crate::core::PATTERN_START;
 use color_eyre::eyre::Result;
+use etcetera::AppStrategy;
 
 pub struct Environment<'a> {
-    jinja: minijinja::Environment<'a>,
+    env: minijinja::Environment<'a>,
 }
 
 #[derive(Clone, Debug)]
@@ -15,8 +16,18 @@ pub enum Segment {
 
 impl<'a> Environment<'a> {
     pub fn new() -> Self {
-        let jinja = minijinja::Environment::new();
-        Environment { jinja }
+        let mut env = minijinja::Environment::new();
+        env.set_undefined_behavior(minijinja::UndefinedBehavior::Strict);
+
+        minijinja_embed::load_templates!(env);
+        let strategy = etcetera::choose_app_strategy(etcetera::AppStrategyArgs {
+            app_name: "tangerine".into(),
+            author: "liblaf".into(),
+            top_level_domain: "local".into(),
+        })
+        .unwrap();
+        env.set_loader(minijinja::path_loader(strategy.in_data_dir("templates")));
+        Environment { env }
     }
 
     pub fn parse_text(&self, text: String) -> Result<Vec<Segment>> {
@@ -49,22 +60,27 @@ impl<'a> Environment<'a> {
         for segment in segments {
             match segment {
                 Segment::Text(text) => lines.push(text.to_string()),
-                Segment::Template(template) => match self.jinja.get_template(&template.name) {
-                    Ok(tmpl) => {
-                        let rendered = tmpl.render(&template.context)?;
-                        lines.push(rendered);
+                Segment::Template(template) => {
+                    match self
+                        .env
+                        .get_template(&(template.name.to_string() + ".jinja"))
+                    {
+                        Ok(tmpl) => {
+                            let rendered = tmpl.render(&template.context)?;
+                            lines.push(rendered);
+                        }
+                        Err(err) => {
+                            lines.extend(template.lines.clone());
+                            tracing::error!(error = %err, template = %template.name);
+                        }
                     }
-                    Err(err) => {
-                        lines.extend(template.lines.clone());
-                        tracing::error!(error = %err, template = %template.name);
-                    }
-                },
+                }
             }
         }
         let mut text = lines.join("\n");
         if !text.ends_with("\n") {
             text.push('\n');
         }
-        return Ok(text);
+        Ok(text)
     }
 }

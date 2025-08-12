@@ -8,7 +8,7 @@ pub use self::core::PATTERN_END;
 pub use self::core::PATTERN_START;
 pub use self::core::Template;
 use clap::Parser;
-use eyre::Result;
+use color_eyre::eyre::Result;
 
 #[tokio::main]
 async fn main() -> Result<()> {
