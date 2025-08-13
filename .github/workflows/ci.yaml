@@ -12,7 +12,7 @@ on:
 
 jobs:
   build:
-    name: Build
+    name: Build (${{ matrix.platform.target }})
     runs-on: ${{ matrix.platform.runner }}
     steps:
       - name: Checkout
@@ -23,9 +23,9 @@ jobs:
         uses: houseabsolute/actions-rust-cross@v1
         with:
           target: ${{ matrix.platform.target }}
-          args: --bins --release --locked
+          args: --release
       - name: Distribute
-        run: pipx run 'https://raw.githubusercontent.com/liblaf/copier-rust/refs/heads/main/scripts/dist.py'
+        run: pipx run --fetch-missing-python 'https://raw.githubusercontent.com/liblaf/copier-rust/refs/heads/main/scripts/dist.py'
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
