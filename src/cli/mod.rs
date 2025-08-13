@@ -14,9 +14,6 @@ pub struct Cli {
     #[arg(short, long)]
     in_place: bool,
 
-    #[command(flatten)]
-    color: colorchoice_clap::Color,
-
     #[cfg(debug_assertions)]
     #[command(flatten)]
     pub verbosity: clap_verbosity_flag::Verbosity<clap_verbosity_flag::TraceLevel>,
@@ -27,7 +24,7 @@ pub struct Cli {
 }
 
 impl Cli {
-    pub async fn run(self) -> Result<()> {
+    pub fn run(self) -> Result<()> {
         let mut contents = String::new();
         self.input.clone().open()?.read_to_string(&mut contents)?;
         let environment = Environment::new()?;
@@ -38,7 +35,10 @@ impl Cli {
         } else {
             self.output.create()?
         };
-        output.write_all(result.as_bytes())?;
+        {
+            let _span = tracing::trace_span!("write_all");
+            output.write_all(result.as_bytes())?;
+        }
         Ok(())
     }
 }

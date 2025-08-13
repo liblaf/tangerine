@@ -24,6 +24,7 @@ impl<'a> Environment<'a> {
         self.env.get_template(name)
     }
 
+    #[tracing::instrument(level = "trace")]
     pub fn new() -> Result<Self> {
         let mut env = minijinja::Environment::new();
         env.set_undefined_behavior(minijinja::UndefinedBehavior::Strict);
@@ -39,6 +40,7 @@ impl<'a> Environment<'a> {
         Ok(Environment { env, context })
     }
 
+    #[tracing::instrument(level = "trace", skip_all)]
     pub fn parse_text(&self, text: String) -> Result<Vec<Segment>> {
         let mut in_template: bool = false;
         let mut segments: Vec<Segment> = Vec::new();
@@ -64,6 +66,7 @@ impl<'a> Environment<'a> {
         Ok(segments)
     }
 
+    #[tracing::instrument(level = "trace", skip_all)]
     pub fn render(&self, segments: &[Segment]) -> Result<String> {
         let mut lines: Vec<String> = Vec::new();
         for segment in segments {
@@ -79,7 +82,7 @@ impl<'a> Environment<'a> {
         Ok(text)
     }
 
-    #[tracing::instrument(skip_all, fields(template = template.name))]
+    #[tracing::instrument(level = "trace", skip_all, fields(template = template.name))]
     pub fn render_template(&self, template: &Template) -> Result<String> {
         let template_name = if template.name.ends_with(".jinja") {
             template.name.to_string()

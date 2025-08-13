@@ -14,9 +14,8 @@ use color_eyre::eyre::Result;
 
 shadow_rs::shadow!(build);
 
-#[tokio::main]
-async fn main() -> Result<()> {
+fn main() -> Result<()> {
     let cli: Cli = Cli::parse();
     self::logging::init(cli.verbosity)?;
-    cli.run().await
+    cli.run()
 }

@@ -1,25 +1,40 @@
-use std::path::Path;
-
 use color_eyre::Result;
+use std::path::{Path, PathBuf};
 
-const PATTERNS: [&str; 4] = [
-    ".copier-answers.*.yaml",
-    ".copier-answers.*.yml",
-    ".copier-answers.yaml",
-    ".copier-answers.yml",
+const PATTERNS: &[&str] = &[
+    ".config/copier/.copier-answers.*.yaml",
+    // ".config/copier/.copier-answers.*.yml",
+    // ".config/copier/.copier-answers.yaml",
+    // ".config/copier/.copier-answers.yml",
+    // ".copier-answers.*.yaml",
+    // ".copier-answers.*.yml",
+    // ".copier-answers.yaml",
+    // ".copier-answers.yml",
 ];
 
-pub fn load_copier_answers() -> Result<minijinja::Value> {
-    let cwd = match git2::Repository::discover(".") {
-        Ok(repo) => repo.workdir().unwrap().to_path_buf(),
+#[tracing::instrument(err, level = "trace", ret)]
+pub fn git_root() -> Result<PathBuf> {
+    let cwd = std::env::current_dir()?;
+    let cwd = match gix_discover::upwards(&cwd) {
+        Ok((path, _)) => match path {
+            gix_discover::repository::Path::LinkedWorkTree { work_dir, .. } => work_dir,
+            gix_discover::repository::Path::WorkTree(root) => root,
+            gix_discover::repository::Path::Repository(root) => root,
+        },
         Err(err) => {
             tracing::error!("{}", err);
-            std::env::current_dir().unwrap()
+            cwd
         }
     };
-    let mut values: Vec<minijinja::Value> = vec![];
+    Ok(cwd)
+}
+
+#[tracing::instrument(err, level = "trace", ret)]
+pub fn load_copier_answers() -> Result<minijinja::Value> {
+    let cwd = git_root()?;
+    let mut values: Vec<minijinja::Value> = Vec::new();
     for pattern in PATTERNS {
-        let pattern = cwd.join("**").join(pattern);
+        let pattern = cwd.join(pattern);
         let pattern = pattern.to_str().unwrap();
         for path in glob::glob(pattern)? {
             match path {
