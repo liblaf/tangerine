@@ -1,10 +1,13 @@
 use crate::core::Environment;
-use color_eyre::eyre::Result;
+use color_eyre::Result;
 use std::io::{Read, Write};
 
 #[derive(clap::Parser)]
 #[command(version, author, about)]
 pub struct Cli {
+    #[command(flatten)]
+    shared: grapes::cli::Shared,
+
     #[arg(value_parser, default_value = "-")]
     input: clio::InputPath,
 
@@ -13,18 +16,14 @@ pub struct Cli {
 
     #[arg(short, long)]
     in_place: bool,
-
-    #[cfg(debug_assertions)]
-    #[command(flatten)]
-    pub verbosity: clap_verbosity_flag::Verbosity<clap_verbosity_flag::TraceLevel>,
-
-    #[cfg(not(debug_assertions))]
-    #[command(flatten)]
-    pub verbosity: clap_verbosity_flag::Verbosity<clap_verbosity_flag::WarnLevel>,
 }
 
 impl Cli {
-    pub fn run(self) -> Result<()> {
+    pub fn execute(self) -> Result<()> {
+        match self.shared.execute::<Cli>()? {
+            grapes::cli::ExecuteResult::EarlyExit => return Ok(()),
+            grapes::cli::ExecuteResult::Success => {}
+        }
         let mut contents = String::new();
         self.input.clone().open()?.read_to_string(&mut contents)?;
         let environment = Environment::new()?;

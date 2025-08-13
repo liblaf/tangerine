@@ -1,7 +1,7 @@
+use super::constants::PATTERN_END;
+use super::constants::PATTERN_START;
 use super::template::Template;
-use crate::core::PATTERN_END;
-use crate::core::PATTERN_START;
-use color_eyre::eyre::Result;
+use color_eyre::Result;
 use etcetera::AppStrategy;
 
 #[derive(Debug)]

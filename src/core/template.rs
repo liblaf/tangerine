@@ -1,5 +1,5 @@
 use super::constants::PATTERN_START;
-use color_eyre::eyre::Result;
+use color_eyre::Result;
 
 #[derive(Debug)]
 pub struct Template {

@@ -1,6 +1,5 @@
 mod cli;
 mod core;
-mod logging;
 mod utils;
 
 pub use self::cli::Cli;
@@ -16,6 +15,5 @@ shadow_rs::shadow!(build);
 
 fn main() -> Result<()> {
     let cli: Cli = Cli::parse();
-    self::logging::init(cli.verbosity)?;
-    cli.run()
+    cli.execute()
 }

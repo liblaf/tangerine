@@ -1,0 +1,7 @@
+#:schema https://mise.jdx.dev/schema/mise.json
+
+[settings]
+jobs = 1
+
+[tasks.gen]
+depends = ["gen-complete", "gen-markdown"]
