@@ -1,5 +1,26 @@
 # Changelog
 
+## [0.3.0](https://github.com/liblaf/github-bot/compare/v0.2.0..v0.3.0) - 2025-08-13
+
+### 💥 BREAKING CHANGES
+
+- **cli:** add shell completions and docs generation - ([fded12a](https://github.com/liblaf/github-bot/commit/fded12a6598c5b55533ff6aba0122ab8ae2a4424))
+
+### ⬆️ Dependencies
+
+- **deps:** update rust crate clap to v4.5.45 (#10) - ([211b542](https://github.com/liblaf/github-bot/commit/211b5429c2f0cff104626fb3f0a6acaa0bbc070a))
+
+### ♻ Code Refactoring
+
+- **core:** simplify execution and improve tracing - ([ebba0b3](https://github.com/liblaf/github-bot/commit/ebba0b31a8a52a3ea6aece490c81544064fa9d06))
+
+### 🔧 Continuous Integration
+
+- downgrade Python version for distribution - ([b07b380](https://github.com/liblaf/github-bot/commit/b07b3807319f0dac5565a261efb3babc53fca794))
+- specify Python version for distribution - ([d7c85f7](https://github.com/liblaf/github-bot/commit/d7c85f767ad4461e764832a66e7c943ee63afb16))
+- improve build workflow clarity - ([8641b8c](https://github.com/liblaf/github-bot/commit/8641b8c3836dd3385ea73d5b99f2cf57fba8ee8c))
+- use centralized distribution script from copier-rust - ([be940bc](https://github.com/liblaf/github-bot/commit/be940bc8e47bf045cbcee8c321abae6af6ebc647))
+
 ## [0.2.0] - 2025-08-12
 
 ### 💥 BREAKING CHANGES
