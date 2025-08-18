@@ -15,5 +15,5 @@ shadow_rs::shadow!(build);
 
 fn main() -> Result<()> {
     let cli: Cli = Cli::parse();
-    cli.execute()
+    cli.invoke()
 }

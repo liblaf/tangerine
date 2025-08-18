@@ -19,10 +19,10 @@ pub struct Cli {
 }
 
 impl Cli {
-    pub fn execute(self) -> Result<()> {
-        match self.shared.execute::<Cli>()? {
-            grapes::cli::ExecuteResult::EarlyExit => return Ok(()),
-            grapes::cli::ExecuteResult::Success => {}
+    pub fn invoke(self) -> Result<()> {
+        match self.shared.invoke::<Cli>()? {
+            grapes::cli::Outcome::Exit => return Ok(()),
+            grapes::cli::Outcome::Continue => {}
         }
         let mut contents = String::new();
         self.input.clone().open()?.read_to_string(&mut contents)?;
