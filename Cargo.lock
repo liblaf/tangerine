@@ -460,7 +460,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "778e2ac28f6c47af28e4907f13ffd1e1ddbd400980a9abd7c8df189bf578a5ad"
 dependencies = [
  "libc",
- "windows-sys 0.60.2",
+ "windows-sys 0.59.0",
 ]
 
 [[package]]
@@ -1109,9 +1109,9 @@ dependencies = [
 
 [[package]]
 name = "liblaf-grapes"
-version = "0.2.0"
+version = "0.2.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f38df681ed271b34ef2a2df82d9d1aa7779ddcf7e59f392ea0e2b84cae9f1d8e"
+checksum = "e0788fc4eca124fd166dc552b39a8cd22776d6bc15b44e6cbc3a2369553e3e0e"
 dependencies = [
  "clap",
  "clap-markdown",
@@ -1537,7 +1537,7 @@ dependencies = [
  "errno",
  "libc",
  "linux-raw-sys",
- "windows-sys 0.60.2",
+ "windows-sys 0.59.0",
 ]
 
 [[package]]
