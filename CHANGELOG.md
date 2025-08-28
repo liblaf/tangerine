@@ -1,15 +1,23 @@
 # Changelog
 
+## [0.3.2](https://github.com/liblaf/tangerine/compare/v0.3.1..v0.3.2) - 2025-08-28
+
+### ⬆️ Dependencies
+
+- **deps:** update rust crate clap to v4.5.46 (#20) - ([a864461](https://github.com/liblaf/tangerine/commit/a86446129b3536bde6f5509315bd069154903244))
+- **deps:** update rust crate minijinja to v2.12.0 (#18) - ([2d71143](https://github.com/liblaf/tangerine/commit/2d71143ed31c48476e13780a2f41b7dccacb1795))
+- **deps:** update rust crate regex to v1.11.2 (#16) - ([88c2fe8](https://github.com/liblaf/tangerine/commit/88c2fe83d577a07ffe7d2a087d411128d859f210))
+- **deps:** update rust crate grapes to v0.2.1 (#14) - ([295d8ae](https://github.com/liblaf/tangerine/commit/295d8ae42f3f756bccdb3eb54d28854b09de15cd))
+
+### ❤️ New Contributors
+
+- [@renovate[bot]](https://github.com/apps/renovate) made their first contribution in [#21](https://github.com/liblaf/tangerine/pull/21)
+
 ## [0.3.1](https://github.com/liblaf/tangerine/compare/v0.3.0..v0.3.1) - 2025-08-24
 
 ### ⬆️ Dependencies
 
 - **deps:** update grapes to v0.2 - ([00d19f5](https://github.com/liblaf/tangerine/commit/00d19f549cc861d6441c0a9e014f8572b1104e6b))
-
-### ❤️ New Contributors
-
-- [@liblaf-bot[bot]](https://github.com/apps/liblaf-bot) made their first contribution
-- [@liblaf](https://github.com/liblaf) made their first contribution
 
 ## [0.3.0](https://github.com/liblaf/tangerine/compare/v0.2.0..v0.3.0) - 2025-08-14
 
