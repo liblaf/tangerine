@@ -1109,9 +1109,9 @@ dependencies = [
 
 [[package]]
 name = "liblaf-grapes"
-version = "0.2.2"
+version = "0.2.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "cfcf0142102ee3d4647badbb86c145704ab667075715f91438de7c56310fd4e1"
+checksum = "36f67c1389354102ea2f602f041b2c40888be76e9ada8c21ebb18e00d46879e1"
 dependencies = [
  "clap",
  "clap-markdown",
