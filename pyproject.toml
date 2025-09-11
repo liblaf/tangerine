@@ -3,7 +3,7 @@
 
 [project]
 name = "liblaf-tangerine"
-description = ""
+description = "🍊 Squeeze dynamic content into your files with Tangerine's template magic."
 readme = "README.md"
 requires-python = ">=3.12"
 license = "MIT"
