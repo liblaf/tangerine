@@ -1,5 +1,5 @@
-- **[Python](https://github.com/liblaf/copier-python)** - {{ github_description("liblaf/copier-python") }}
-- **[Release](https://github.com/liblaf/copier-release)** - {{ github_description("liblaf/copier-release") }}
-- **[Rust](https://github.com/liblaf/copier-rust)** - {{ github_description("liblaf/copier-rust") }}
 - **[Shared](https://github.com/liblaf/copier-shared)** - {{ github_description("liblaf/copier-shared") }}
+- **[Release](https://github.com/liblaf/copier-release)** - {{ github_description("liblaf/copier-release") }}
+- **[Python](https://github.com/liblaf/copier-python)** - {{ github_description("liblaf/copier-python") }}
+- **[Rust](https://github.com/liblaf/copier-rust)** - {{ github_description("liblaf/copier-rust") }}
 - **[TypeScript](https://github.com/liblaf/copier-typescript)** - {{ github_description("liblaf/copier-typescript") }}
