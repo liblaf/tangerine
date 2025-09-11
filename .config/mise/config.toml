@@ -1,7 +1,4 @@
 #:schema https://mise.jdx.dev/schema/mise.json
 
-[settings]
-jobs = 1
-
-[tasks.gen]
-depends = ["gen-complete", "gen-markdown"]
+[task_config]
+includes = [".config/mise/tasks", ".config/copier/mise-tasks"]

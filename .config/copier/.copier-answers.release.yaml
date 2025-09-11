@@ -3,4 +3,4 @@
 # prettier-ignore
 _commit: 364efd9
 _src_path: gh:liblaf/copier-release
-release_type: rust
+release_type: python
