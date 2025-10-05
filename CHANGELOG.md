@@ -1,16 +1,22 @@
 # Changelog
 
+## [0.4.2](https://github.com/liblaf/tangerine/compare/v0.4.1..v0.4.2) - 2025-10-05
+
+### ⬆️ Dependencies
+
+- **deps:** update dependency liblaf-grapes to v5 (#34) - ([704e05e](https://github.com/liblaf/tangerine/commit/704e05edd6fa36497856311ea9813f3c148f2a78))
+
+### ❤️ New Contributors
+
+- [@liblaf-bot[bot]](https://github.com/apps/liblaf-bot) made their first contribution
+- [@renovate[bot]](https://github.com/apps/renovate) made their first contribution in [#34](https://github.com/liblaf/tangerine/pull/34)
+
 ## [0.4.1](https://github.com/liblaf/tangerine/compare/v0.4.0..v0.4.1) - 2025-09-21
 
 ### ⬆️ Dependencies
 
 - **deps:** update dependency liblaf-grapes to v4 (#33) - ([ea0c1ed](https://github.com/liblaf/tangerine/commit/ea0c1edff81473807193ff3b4ad084fdbf460695))
 - **deps:** update dependency liblaf-grapes to v3 (#31) - ([3127635](https://github.com/liblaf/tangerine/commit/312763512e6f13ead81087d76050c478098a84d9))
-
-### ❤️ New Contributors
-
-- [@liblaf-bot[bot]](https://github.com/apps/liblaf-bot) made their first contribution
-- [@renovate[bot]](https://github.com/apps/renovate) made their first contribution in [#33](https://github.com/liblaf/tangerine/pull/33)
 
 ## [0.4.0](https://github.com/liblaf/tangerine/compare/v0.3.3..v0.4.0) - 2025-09-11
 
