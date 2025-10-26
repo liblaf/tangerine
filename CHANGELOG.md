@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.3](https://github.com/liblaf/tangerine/compare/v0.4.2...v0.4.3) (2025-10-26)
+
+
+### 🐛 Bug Fixes
+
+* **deps:** update dependency liblaf-grapes to v6 ([#36](https://github.com/liblaf/tangerine/issues/36)) ([42fcdbb](https://github.com/liblaf/tangerine/commit/42fcdbb0cc71ea09d2159cc01fa36abcf9716ec0))
+
 ## [0.4.2](https://github.com/liblaf/tangerine/compare/v0.4.1..v0.4.2) - 2025-10-05
 
 ### ⬆️ Dependencies
