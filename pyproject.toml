@@ -26,7 +26,7 @@ classifiers = [
 ]
 dependencies = [
   "attrs>=25,<26",
-  "cappa>=0.30,<0.31",
+  "cappa>=0.32,<0.33",
   "cytoolz>=1,<2",
   "emoji>=2.14.1",
   "githubkit>=0.13,<0.14",
