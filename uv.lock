@@ -136,16 +136,16 @@ wheels = [
 
 [[package]]
 name = "cappa"
-version = "0.30.2"
+version = "0.32.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "rich" },
     { name = "type-lens" },
     { name = "typing-extensions" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/d9/27/c8f054ff37ea59fc656002dff09e025045844f089a5043cffbc70e118688/cappa-0.30.2.tar.gz", hash = "sha256:9d964dfea9a72a0e07b64d09617bd58a25b1b6dd97c31fe33d21edfccaf98e1f", size = 311131, upload-time = "2025-09-08T13:24:59.376Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/29/7b/774e19eed22f97deee7c2f3eb66bf1e9709374ef510c7ef1e71dae1ba27e/cappa-0.32.2.tar.gz", hash = "sha256:933b411a186d41c5b2f983e6b06a36de8b19078dd6b66732e7895893908952c2", size = 361403, upload-time = "2026-07-27T17:53:32.472Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/d1/67/32afa9a82215c3ec883691bbfc811bddb574d3806211b20388d3ed61df7a/cappa-0.30.2-py3-none-any.whl", hash = "sha256:0b2da6d431447d988165539aed53bd410ccdc59d7bfa5bb99684c80ea9f0eb11", size = 68391, upload-time = "2025-09-08T13:24:57.499Z" },
+    { url = "https://files.pythonhosted.org/packages/5b/1e/8b1765e848adca77e79e0743078bb56866af68f77b5cd7dc8fd3a200f06e/cappa-0.32.2-py3-none-any.whl", hash = "sha256:2f07a0c76c598307423909e13beb5582ce8927edaf42dcb019593ffbb8b3a594", size = 77903, upload-time = "2026-07-27T17:53:31.093Z" },
 ]
 
 [[package]]
@@ -1063,7 +1063,7 @@ test = [
 [package.metadata]
 requires-dist = [
     { name = "attrs", specifier = ">=25,<26" },
-    { name = "cappa", specifier = ">=0.30,<0.31" },
+    { name = "cappa", specifier = ">=0.32,<0.33" },
     { name = "cytoolz", specifier = ">=1,<2" },
     { name = "emoji", specifier = ">=2.14.1" },
     { name = "githubkit", specifier = ">=0.13,<0.14" },
